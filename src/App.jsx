@@ -17,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     const checkSession = async () => {
-      const {  { session } } = await supabase.auth.getSession()
+     const { data: { session } } = await supabase.auth.getSession()
       setUser(session?.user || null)
     }
     checkSession()
@@ -40,7 +40,7 @@ export default function App() {
     if (!prompt.trim()) return
     setLoading(true)
 
-    const {  { session } } = await supabase.auth.getSession()
+    const { data: { session } } = await supabase.auth.getSession()
     if (!session) return
 
     try {
@@ -63,7 +63,7 @@ export default function App() {
   const sendToTrello = async (task) => {
     if (!listId) return alert('Please enter a Trello List ID')
     
-    const {  { session } } = await supabase.auth.getSession()
+   const { data: { session } } = await supabase.auth.getSession()
     if (!session) return
 
     try {
